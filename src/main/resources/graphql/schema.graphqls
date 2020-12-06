@@ -1,0 +1,41 @@
+input EntityInput {
+    id: String
+    name: String!
+}
+
+input AttributeInput {
+    id: String
+    name: String!
+    entityID: String!
+    regexValidation: String!
+    typeCode: String!
+}
+
+type Entity {
+    id: String!
+    name: String!
+}
+
+type Attribute {
+    id: String!
+    name: String!
+    entityID: String!
+    regexValidation: String!
+    type: NativeTypeEnum!
+}
+
+enum NativeTypeEnum {
+    STRING, BOOLEAN, INTEGER
+}
+
+type Query {
+    findLastEntityRegistered: [Entity]
+
+    findLastAttributesRegistered: [Attribute]
+}
+
+type Mutation {
+    registerEntity(entityInput: EntityInput): Entity
+
+    registerAttribute(attributeInput: AttributeInput): Attribute
+}
