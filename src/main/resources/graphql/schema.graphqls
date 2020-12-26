@@ -29,8 +29,10 @@ enum NativeTypeEnum {
 }
 
 type Query {
+    findOneEntityByName(name: String): Entity
     findLastEntityRegistered: [Entity]
 
+    findAttributesByEntityId(entityId: String): [Attribute]
     findLastAttributesRegistered: [Attribute]
 }
 

@@ -26,7 +26,7 @@ public class AttributeMutation implements GraphQLMutationResolver {
         Attribute entity;
         final String id = attributeInput.getId();
 
-        if (StringUtils.isEmpty(id)) {
+        if (!StringUtils.isEmpty(id)) {
             entity = this.attributeRepository.findById(id).get();
         }
         else {
@@ -43,7 +43,8 @@ public class AttributeMutation implements GraphQLMutationResolver {
         }
 
         entity.setRegexValidation(attributeInput.getRegexValidation());
-        
+     
+        this.attributeRepository.save(entity);
 
         return entity;
     }
